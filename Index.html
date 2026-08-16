@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mapa ficticio ASOIAF</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    #map { height: 100vh; width: 100%; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Dimensiones totales del mapa (alto=8300, ancho=10000)
+    var bounds = [[0,0],[8300,10000]];
+
+    // Crear mapa con límites
+    var map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -1,
+      maxBounds: bounds,        // Limita el área visible
+      maxBoundsViscosity: 1.0   // Rebote suave al llegar al borde
+    });
+
+    map.fitBounds(bounds);
+
+    // Cada cuadrante: 4150 px de alto y 2500 px de ancho
+    // Fila superior (Y: 0–4150)
+    L.imageOverlay('ASOIAFmap_0_0.png', [[0,0],[4150,2500]]).addTo(map);
+    L.imageOverlay('ASOIAFmap_0_1.png', [[0,2500],[4150,5000]]).addTo(map);
+    L.imageOverlay('ASOIAFmap_0_2.png', [[0,5000],[4150,7500]]).addTo(map);
+    L.imageOverlay('ASOIAFmap_0_3.png', [[0,7500],[4150,10000]]).addTo(map);
+
+    // Fila inferior (Y: 4150–8300)
+    L.imageOverlay('ASOIAFmap_1_0.png', [[4150,0],[8300,2500]]).addTo(map);
+    L.imageOverlay('ASOIAFmap_1_1.png', [[4150,2500],[8300,5000]]).addTo(map);
+    L.imageOverlay('ASOIAFmap_1_2.png', [[4150,5000],[8300,7500]]).addTo(map);
+    L.imageOverlay('ASOIAFmap_1_3.png', [[4150,7500],[8300,10000]]).addTo(map);
+  </script>
+</body>
+</html>
+
+
